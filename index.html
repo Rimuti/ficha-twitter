@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Pessoal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #B3E0FF; /* Fundo azul claro */
+        }
+
+        header {
+            background-color: #0074a2;
+            color: white;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #ccc; /* Cor de fundo da foto de perfil */
+            background-image: url('https://i.pinimg.com/736x/98/0d/2d/980d2dac7e95a25d17fc769d674370bc.jpg'); /* Substitua pela URL da imagem do Google */
+            background-size: cover; /* Auto-ajuste da imagem */
+            float: left;
+            margin-left: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px; /* Ajuste a altura conforme necessário */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile-pic"></div>
+        <h1>(🎮)- Rimuti -(🎮)</h1>
+        <h2>Otaku Player Lvl: <span id="level">22</span> - EXP: <span id="exp-counter"></span> (<span id="exp-needed"></span> para o próximo nível)</h2>
+    </header>
+
+    <div class="container">
+        <h2>MBTI: <span style="font-weight: normal;">INFJ-T</span></h2>
+        <h2>Religião: <span style="font-weight: normal;">Rimurismo</span></h2>
+        <h2>Sexualidade: <span style="font-weight: normal;">Bissexual</span></h2>
+        <h2>Signo: <span style="font-weight: normal;">Slime com ascendente em Divindade</span></h2><hr>
+
+
+        <h2>Genshin Impact UID: <span style="font-weight: normal;">625242225</span></h2>
+        <h2>Star Rail UID: <span style="font-weight: normal;">602423878</span></h2><hr>
+
+        <h2>Descrição:</h2>
+        <p> Sou um homem de 22 anos com autismo e tenho um senso de justiça muito grande, ou seja,
+            detesto pessoas que cometem injustiças ao ponto de surtar. No entanto, posso acabar
+            sendo um pouco hipócrita algumas vezes...</p><br>
+
+        <h2>Amo:</h2>
+        <p> Amo animes, principalmente isekais e slice-of-life, e meus tipos de jogos favoritos são de RPG
+            e aqueles com histórias cativantes, como Omori, Undertale, Oneshot, Genshin Impact e
+            Honkai Star Rail, além de jogos de console como Zelda, Pokémon e Mario.</p>
+
+        <h2>Odeio:</h2>
+        <p> Detesto motoqueiros barulhentos, principalmente os que dão pipoco, fumantes, bandidos, maconheiros,
+            fãs de políticos e extremistas religiosos que usam religião pra criminalizar o que não gostam.</p>
+    </div>
+
+    <script>
+        // Calcular a EXP automática a partir de 2 de julho de 2023
+        const dataInicio = new Date('2023-07-02');
+        const dataAtual = new Date();
+        const diffEmDias = Math.floor((dataAtual - dataInicio) / (1000 * 60 * 60 * 24));
+
+        // Calcular o nível e EXP atual
+        const nivelAtual = 22;
+        const expNecessarioParaProximoNivel = 365; // Exemplo: Um ano
+        const expAtual = diffEmDias;
+
+        // Exibir o nível e EXP no elemento exp-counter
+        const level = document.getElementById('level');
+        const expCounter = document.getElementById('exp-counter');
+        const expNeeded = document.getElementById('exp-needed');
+        level.textContent = nivelAtual;
+        expCounter.textContent = expAtual;
+        expNeeded.textContent = expNecessarioParaProximoNivel - expAtual;
+    </script>
+</body>
+</html>
