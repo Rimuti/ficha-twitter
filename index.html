@@ -24,7 +24,7 @@
             height: 150px;
             border-radius: 50%;
             background-color: #ccc; /* Cor de fundo da foto de perfil */
-            background-image: url('https://i.pinimg.com/736x/98/0d/2d/980d2dac7e95a25d17fc769d674370bc.jpg'); /* Substitua pela URL da imagem do Google */
+            background-image: url('https://i.pinimg.com/736x/98/0d/2d/980d2dac7e95a25d17fc769d674370bc.jpg'); /* Substitua pela URL da imagem desejada */
             background-size: cover; /* Auto-ajuste da imagem */
             float: left;
             margin-left: 20px;
@@ -74,13 +74,14 @@
             iframe {
                 height: 200px;
             }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="profile-pic"></div>
         <h1>(🎮)- Rimuti -(🎮)</h1>
-        <h2>Otaku Player Lvl: <span id="level">22</span> - EXP: <span id="exp-counter"></span> (<span id="exp-needed"></span> para o próximo nível)</h2>
+        <h2>Otaku Player Lvl: <span id="level"></span> - EXP: <span id="exp-counter"></span> dias vividos</h2>
     </header>
 
     <div class="container">
@@ -89,14 +90,13 @@
         <h2>Sexualidade: <span style="font-weight: normal;">Bissexual</span></h2>
         <h2>Signo: <span style="font-weight: normal;">Slime com ascendente em Divindade</span></h2><hr>
 
-
         <h2>Genshin Impact UID: <span style="font-weight: normal;">625242225</span></h2>
         <h2>Star Rail UID: <span style="font-weight: normal;">602423878</span></h2><hr>
 
         <h2>Descrição:</h2>
-        <p> Sou um homem de 22 anos com autismo e tenho um senso de justiça muito grande, ou seja,
-            detesto pessoas que cometem injustiças ao ponto de surtar. No entanto, posso acabar
-            sendo um pouco hipócrita algumas vezes...</p><br>
+        <p id="descricao">
+            <!-- A descrição será preenchida pelo JavaScript -->
+        </p><br>
 
         <h2>Amo:</h2>
         <p> Amo animes, principalmente isekais e slice-of-life, e meus tipos de jogos favoritos são de RPG
@@ -109,23 +109,46 @@
     </div>
 
     <script>
-        // Calcular a EXP automática a partir de 2 de julho de 2023
-        const dataInicio = new Date('2023-07-02');
+        // Função para calcular a idade em anos, meses e dias
+        function calcularIdade(dataNascimento) {
+            const hoje = new Date();
+            let anos = hoje.getFullYear() - dataNascimento.getFullYear();
+            let meses = hoje.getMonth() - dataNascimento.getMonth();
+            let dias = hoje.getDate() - dataNascimento.getDate();
+
+            if (dias < 0) {
+                meses--;
+                const mesAnterior = new Date(hoje.getFullYear(), hoje.getMonth(), 0);
+                dias += mesAnterior.getDate();
+            }
+
+            if (meses < 0) {
+                anos--;
+                meses += 12;
+            }
+
+            return { anos, meses, dias };
+        }
+
+        // Data de nascimento
+        const dataNascimento = new Date('2001-07-02');
         const dataAtual = new Date();
-        const diffEmDias = Math.floor((dataAtual - dataInicio) / (1000 * 60 * 60 * 24));
 
-        // Calcular o nível e EXP atual
-        const nivelAtual = 22;
-        const expNecessarioParaProximoNivel = 365; // Exemplo: Um ano
-        const expAtual = diffEmDias;
+        // Calcular idade
+        const idade = calcularIdade(dataNascimento);
 
-        // Exibir o nível e EXP no elemento exp-counter
-        const level = document.getElementById('level');
-        const expCounter = document.getElementById('exp-counter');
-        const expNeeded = document.getElementById('exp-needed');
-        level.textContent = nivelAtual;
-        expCounter.textContent = expAtual;
-        expNeeded.textContent = expNecessarioParaProximoNivel - expAtual;
+        // Calcular EXP total (dias vividos)
+        const umDia = 1000 * 60 * 60 * 24;
+        const expTotal = Math.floor((dataAtual - dataNascimento) / umDia);
+
+        // Atualizar os elementos no HTML
+        document.getElementById('level').textContent = idade.anos;
+        document.getElementById('exp-counter').textContent = expTotal;
+
+        // Atualizar a descrição com a idade atual
+        document.getElementById('descricao').textContent = `Sou um homem de ${idade.anos} anos, ${idade.meses} meses e ${idade.dias} dias com autismo e tenho um senso de justiça muito grande, ou seja,
+            detesto pessoas que cometem injustiças ao ponto de surtar. No entanto, posso acabar
+            sendo um pouco hipócrita algumas vezes...`;
     </script>
 </body>
 </html>
